@@ -120,3 +120,5 @@ All tests in my-test-suite suite passed =D
 
 #### Examples
 You can run and explore the `examples.sh`
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FDavidBindloss%2Ftest.sh.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FDavidBindloss%2Ftest.sh?ref=badge_large)
