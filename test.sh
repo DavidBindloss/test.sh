@@ -71,11 +71,10 @@ function test-end() {
     END=$(darwin-now)
     local tests_time="$(printf "%010d" "$(( ${END/%N/000000000} - ${START/%N/000000000} ))")"
     echo -e "\ncompleted tests in ${tests_time:0:${#tests_time}-9}.${tests_time:${#tests_time}-9:3}s"
-    FAILED_TESTS=${#FAILED[@]}
-    echo -e "\nRan ${TESTS_RAN} tests - ${FAILED_TESTS}/${TESTS_RAN} failed, ${PASSED}/${TESTS_RAN} passed"
+    echo -e "\nRan ${TESTS_RAN} tests - ${#FAILED[@]}/${TESTS_RAN} failed, ${PASSED}/${TESTS_RAN} passed"
 
     # Print trace of failed tests
-    if [ ${FAILED_TESTS} -gt 0 ]; then
+    if [ ${#FAILED[@]} -gt 0 ]; then
 		echo -e "Failed tests:\n"
         for ERROR in "${FAILED[@]}"; do
             echo -e "$ERROR"
