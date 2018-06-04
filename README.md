@@ -97,11 +97,13 @@ my-test-fn() {
   expect echo "0" 0
   expect echo "1" 0
 }
+
 # start timer
 test-start my-test-suite
 
 my-test-fn
 # more fns...
+# more tests...
 
 # end timer and generate report
 test-end my-test-suite
@@ -119,6 +121,6 @@ All tests in my-test-suite suite passed =D
 ```
 
 #### Examples
-You can run and explore the `examples.sh`
+You can run and explore the `examples.sh` file to get an idea of some of the ways you can use test.sh
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FDavidBindloss%2Ftest.sh.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FDavidBindloss%2Ftest.sh?ref=badge_large)

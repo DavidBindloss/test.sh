@@ -38,4 +38,3 @@ contains "foo" "f"; expect $?
 
 # Or even 
 curl -Ss https://google.com > /dev/null; expect $?
-
