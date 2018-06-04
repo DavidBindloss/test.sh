@@ -6,6 +6,9 @@
 test-start 'example-test-suite'
 
 # Call expect plain directly
+# think in plain English: 'Expect "foo" to equal "foo"'
+# or more generically expect x to equal y
+
 expect "foo" "foo"
 
 function test-case() {
