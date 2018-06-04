@@ -5,18 +5,18 @@ PASSED=0
 FAILED=()
 
 darwin-now() {
-  echo "$(python -c 'import time; print "%.9f" % time.time()')" | sed 's/\.//g'
+    echo "$(python -c 'import time; print "%.9f" % time.time()')" | sed 's/\.//g'
 }
 
 function test-start() {
-  # What env are we in?
-  OS=$(echo $OSTYPE | sed 's/[[:digit:]]//g')
-  case "$OS" in
-    darwin) START=$(darwin-now);;
-    *) START="$(date +%s%N)";;
-  esac
-  SUITE_NAME="$1"
-	echo "starting \"$SUITE_NAME\" test suite"
+    # What env are we in?
+    OS=$(echo $OSTYPE | sed 's/[[:digit:]]//g')
+    case "$OS" in
+        darwin) START=$(darwin-now);;
+        *) START="$(date +%s%N)";;
+    esac
+    SUITE_NAME="$1"
+    echo "starting \"$SUITE_NAME\" test suite"
 }
 
 function expect() {
@@ -33,14 +33,14 @@ function expect() {
         RESULT=$($1 "$ARGS")
         RESULT_EXIT_CODE=$?
         if [[ "$RESULT_EXIT_CODE" -eq "$EXPECTED" ]]; then
-                (( PASSED++ ))
-                printf .
+            (( PASSED++ ))
+            printf .
         else
-                CALLER=($(caller))
-                LINE_NO=${CALLER[0]}
-                FILENAME=$(echo ${CALLER[1]} | rev | cut -d'/' -f1 | rev)
-                FAILED+=("\t$FILENAME: ($CALLING:$LINE_NO) \"$1\" returned $RESULT_EXIT_CODE, expected $EXPECTED")
-                printf F
+            CALLER=($(caller))
+            LINE_NO=${CALLER[0]}
+            FILENAME=$(echo ${CALLER[1]} | rev | cut -d'/' -f1 | rev)
+            FAILED+=("\t$FILENAME: ($CALLING:$LINE_NO) \"$1\" returned $RESULT_EXIT_CODE, expected $EXPECTED")
+            printf F
         fi
     else
         if [ ${#} -eq 1 ]; then
@@ -49,15 +49,15 @@ function expect() {
         # Assume it's a plain equality check
         # in this case we will only have two args: Expected and Result
         if [ "$1" -eq "$EXPECTED" ] 2>/dev/null|| [ "$1" = "$EXPECTED" ] 2>/dev/null; then
-                (( PASSED++ ))
-                printf .
+            (( PASSED++ ))
+            printf .
         else
-                # Where did the test fail?
-                CALLER=($(caller))
-                LINE_NO=${CALLER[0]}
-                FILENAME=$(echo ${CALLER[1]} | rev | cut -d'/' -f1 | rev)
-                FAILED+=("\t$FILENAME: ($CALLING:$LINE_NO) \"$1\" is not equal to \"$EXPECTED\"")
-                printf F
+            # Where did the test fail?
+            CALLER=($(caller))
+            LINE_NO=${CALLER[0]}
+            FILENAME=$(echo ${CALLER[1]} | rev | cut -d'/' -f1 | rev)
+            FAILED+=("\t$FILENAME: ($CALLING:$LINE_NO) \"$1\" is not equal to \"$EXPECTED\"")
+            printf F
         fi
     fi
 }
@@ -76,14 +76,14 @@ function test-end() {
 
     # Print trace of failed tests
     if [ ${FAILED_TESTS} -gt 0 ]; then
-				echo -e "Failed tests:\n"
+		echo -e "Failed tests:\n"
         for ERROR in "${FAILED[@]}"; do
             echo -e "$ERROR"
         done
-				exit 1
+		exit 1
     else
         echo "All tests in \"$SUITE_NAME\" suite passed =D"
-				exit 0
+		exit 0
     fi
 }
 
